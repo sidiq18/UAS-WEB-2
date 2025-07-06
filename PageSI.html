@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Studi Sistem Informasi - UNSERA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .header-text h1 {
+            color: #2c3e50;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .header-text p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .accreditation {
+            background: linear-gradient(45deg, #e67e22, #f39c12);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            margin: 40px 0;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            border-radius: 2px;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 40px;
+            text-align: justify;
+        }
+
+        /* Vision Mission Cards */
+        .vision-mission {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Accordion Styles */
+        .accordion-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accordion-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .accordion-header:hover::before {
+            left: 100%;
+        }
+
+        .accordion-header-text {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .accordion-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .accordion-arrow {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+        }
+
+        .accordion-content-inner {
+            padding: 30px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .accordion-item.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-item.active .accordion-header {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+        }
+
+        .card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .accordion-content-inner ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .accordion-content-inner li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+        }
+
+        .accordion-content-inner li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        /* Career Prospects */
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .career-item {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .career-item:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Focus Areas */
+        .focus-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .focus-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .focus-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .focus-card h4 {
+            color: #2c3e50;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .focus-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #e74c3c, #e67e22);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+        .home-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(45deg, #2c3e50, #34495e);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.home-button:hover {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    transform: translateY(-2px);
+}
+
+.home-icon {
+    width: 24px;
+    height: 24px;
+}
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero-section {
+                padding: 40px 20px;
+            }
+
+            .hero-section h2 {
+                font-size: 28px;
+            }
+
+            .content-section {
+                padding: 30px 20px;
+            }
+
+            .vision-mission {
+                grid-template-columns: 1fr;
+            }
+
+            .career-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .focus-areas {
+                grid-template-columns: 1fr;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <a href="FTI.html" class="home-button">
+    <img src="Logo-unsera.png" alt="Home" class="home-icon">
+    <span>Beranda</span>
+    </a>
+
+
+        <div class="main-content">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h2>Program Studi Sistem Informasi</h2>
+                    <p>Program Studi Sistem Informasi Universitas Serang Raya (UNSERA) mengintegrasikan teknologi informasi dengan proses bisnis untuk menghasilkan lulusan yang mampu merancang, mengembangkan, dan mengelola sistem informasi perusahaan. Fokus pada manajemen data, analisis bisnis, dan implementasi teknologi untuk mendukung pengambilan keputusan strategis.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Tentang Program Studi</h2>
+                <p class="description">
+                    Program Studi Sistem Informasi dirancang untuk menghasilkan profesional yang mampu menjembatani kebutuhan bisnis dengan solusi teknologi informasi. Mahasiswa akan mempelajari analisis dan perancangan sistem, manajemen basis data, business intelligence, serta strategi implementasi IT dalam organisasi.
+                </p>
+                <p class="description">
+                    Dengan pendekatan yang mengintegrasikan aspek teknis dan manajerial, program studi ini mempersiapkan mahasiswa untuk menjadi system analyst, business analyst, project manager IT, dan konsultan sistem informasi. Didukung oleh kurikulum yang selaras dengan kebutuhan industri dan dosen praktisi berpengalaman.
+                </p>
+
+                <div class="focus-areas">
+                    <div class="focus-card">
+                        <div class="focus-icon">📊</div>
+                        <h4>Business Intelligence</h4>
+                        <p>Pengembangan dashboard, reporting, dan analisis data untuk pengambilan keputusan</p>
+                    </div>
+                    <div class="focus-card">
+                        <div class="focus-icon">🔧</div>
+                        <h4>Enterprise Information System</h4>
+                        <p>Perancangan dan implementasi sistem informasi terintegrasi dalam organisasi</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Visi, Misi & Tujuan</h2>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-header-text">
+                            <div class="accordion-icon">🎯</div>
+                            <span>Visi & Misi Program Studi</span>
+                        </div>
+                        <div class="accordion-arrow">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <div style="margin-bottom: 30px;">
+                                <h4 style="color: #2c3e50; font-size: 18px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                    <span style="display: inline-block; width: 30px; height: 30px; background: linear-gradient(45deg, #e74c3c, #c0392b); border-radius: 50%; text-align: center; line-height: 30px; color: white; font-weight: bold; font-size: 14px;">V</span>
+                                    VISI
+                                </h4>
+                                <p style="margin-left: 40px; color: #555; line-height: 1.8;">Menjadi program studi sistem informasi yang unggul dalam menghasilkan lulusan yang kompeten, profesional, dan berintegritas dalam merancang dan mengelola sistem informasi berbasis teknologi terkini yang berlandaskan nilai-nilai keislaman.</p>
+                            </div>
+                            <div>
+                                <h4 style="color: #2c3e50; font-size: 18px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                    <span style="display: inline-block; width: 30px; height: 30px; background: linear-gradient(45deg, #27ae60, #2ecc71); border-radius: 50%; text-align: center; line-height: 30px; color: white; font-weight: bold; font-size: 14px;">M</span>
+                                    MISI
+                                </h4>
+                                <ul style="margin-left: 40px; color: #555; line-height: 1.8;">
+                                    <li>Menyelenggarakan pendidikan berkualitas dalam bidang sistem informasi dan manajemen teknologi</li>
+                                    <li>Mengembangkan kompetensi mahasiswa dalam analisis bisnis dan perancangan sistem</li>
+                                    <li>Menyiapkan lulusan yang mampu mengintegrasikan teknologi dengan kebutuhan bisnis</li>
+                                    <li>Melaksanakan penelitian terapan dalam bidang sistem informasi manajemen</li>
+                                    <li>Menjalin kemitraan dengan dunia industri dan instansi pemerintah</li>
+                                    <li>Mengembangkan jiwa kepemimpinan dan kewirausahaan di bidang IT</li>
+                                    <li>Menerapkan tata kelola IT yang baik dan berkelanjutan</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-header-text">
+                            <div class="accordion-icon">🚀</div>
+                            <span>Tujuan Program Studi</span>
+                        </div>
+                        <div class="accordion-arrow">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <ul>
+                                <li>Menghasilkan lulusan yang menguasai analisis dan perancangan sistem informasi</li>
+                                <li>Membekali mahasiswa dengan keterampilan manajemen proyek teknologi informasi</li>
+                                <li>Mengembangkan kemampuan business intelligence dan data analytics</li>
+                                <li>Menyiapkan lulusan yang adaptif terhadap perkembangan teknologi dan bisnis</li>
+                                <li>Menghasilkan penelitian yang berkontribusi pada pengembangan sistem informasi</li>
+                                <li>Meningkatkan kualitas pembelajaran melalui studi kasus dan praktik industri</li>
+                                <li>Menciptakan konsultan dan wirausaha di bidang teknologi informasi</li>
+                                <li>Menjalin kerjasama dengan perusahaan untuk penempatan kerja dan magang</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Kurikulum & Mata Kuliah</h2>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-header-text">
+                            <div class="accordion-icon">📚</div>
+                            <span>Struktur Kurikulum</span>
+                        </div>
+                        <div class="accordion-arrow">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <div class="vision-mission">
+                                <div class="card">
+                                    <h3><div class="card-icon">1</div>Mata Kuliah Dasar</h3>
+                                    <ul>
+                                        <li>Pengantar Sistem Informasi</li>
+                                        <li>Algoritma & Pemrograman</li>
+                                        <li>Matematika Diskrit</li>
+                                        <li>Statistika Bisnis</li>
+                                        <li>Pengantar Manajemen</li>
+                                        <li>Akuntansi Dasar</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h3><div class="card-icon">2</div>Mata Kuliah Inti</h3>
+                                    <ul>
+                                        <li>Analisis & Perancangan Sistem</li>
+                                        <li>Basis Data</li>
+                                        <li>Manajemen Proyek SI</li>
+                                        <li>Sistem Informasi Manajemen</li>
+                                        <li>Pemrograman Web</li>
+                                        <li>Jaringan Komputer</li>
+                                    </ul>
+                                </div>
+                                <div class="card">
+                                    <h3><div class="card-icon">3</div>Mata Kuliah Lanjutan</h3>
+                                    <ul>
+                                        <li>Business Intelligence</li>
+                                        <li>Enterprise Resource Planning</li>
+                                        <li>Data Warehouse</li>
+                                        <li>Audit Sistem Informasi</li>
+                                        <li>E-Business</li>
+                                        <li>IT Governance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Prospek Karir Lulusan</h2>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-header-text">
+                            <div class="accordion-icon">💼</div>
+                            <span>Peluang Karir & Profesi</span>
+                        </div>
+                        <div class="accordion-arrow">▼</div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <div class="career-grid">
+                                <div class="career-item">System Analyst</div>
+                                <div class="career-item">Business Analyst</div>
+                                <div class="career-item">IT Project Manager</div>
+                                <div class="career-item">Business Intelligence Analyst</div>
+                                <div class="career-item">Data Analyst</div>
+                                <div class="career-item">Database Administrator</div>
+                                <div class="career-item">ERP Consultant</div>
+                                <div class="career-item">IT Auditor</div>
+                                <div class="career-item">Systems Administrator</div>
+                                <div class="career-item">IT Consultant</div>
+                                <div class="career-item">Product Manager</div>
+                                <div class="career-item">Digital Transformation Specialist</div>
+                                <div class="career-item">Information Security Analyst</div>
+                                <div class="career-item">Data Warehouse Designer</div>
+                                <div class="career-item">E-Business Manager</div>
+                                <div class="career-item">IT Governance Specialist</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Bergabunglah dengan Kami!</h2>
+                <p>Wujudkan impian Anda menjadi profesional sistem informasi yang handal dan berdaya saing tinggi</p>
+                <a href="#" class="cta-button">INFO SELENGKAPNYA</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(header) {
+            const accordionItem = header.parentElement;
+            const content = accordionItem.querySelector('.accordion-content');
+            const isActive = accordionItem.classList.contains('active');
+            
+            // Close all other accordion items
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                if (item !== accordionItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.accordion-content').classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            if (isActive) {
+                accordionItem.classList.remove('active');
+                content.classList.remove('active');
+            } else {
+                accordionItem.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                setTimeout(() => {
+                    this.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
